@@ -7,7 +7,7 @@ module Dashboard
     private
 
     def authenticate_admin!
-      redirect_to root_path, alert: 'The Page you are looking for does not exist' unless current_user.admin?
+      redirect_to root_path, alert: 'The page you are looking for does not exist' unless current_user.admin?
     end
 
     def authorize(record, query = nil)
