@@ -1,0 +1,16 @@
+<div class="post-preview-wrapper d-flex mb-5">
+  <div class="post-preview-thumbnail">
+    <%= image_tag post.thumbnail.url, class: 'post-preview-thumbnail-image' %>
+  </div>
+  <div class="post-preview pl-4 pr-4">
+    <%= link_to post_path(post) do %>
+      <h2 class="post-title">
+        <%= post.title %>
+      </h2>
+    <% end %>
+    <p class="post-meta">Posted by
+      <strong><%= post.user&.email %></strong>
+      on <%= post.created_at.strftime("%B, %d, %Y") %>
+    </p>
+  </div>
+</div>

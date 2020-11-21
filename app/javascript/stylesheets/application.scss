@@ -21,3 +21,9 @@
   90%  {opacity: 1;}
   100% {opacity: 0;}
 }
+
+.post-preview-thumbnail-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}

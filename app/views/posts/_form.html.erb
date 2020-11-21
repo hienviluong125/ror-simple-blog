@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <%= render "devise/shared/error_messages", resource: post %>
+      <%= form_for(post) do |f| %>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-4">
+            <h4>Title</h4>
+            <%= f.label :title %><br />
+            <%= f.text_field :title, autofocus: true, placeholder: "Title...", class: "form-control" %>
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-4">
+            <h4>Description</h4>
+            <%= f.label :description %><br />
+            <%= f.text_field :description, autofocus: true, placeholder: "description...", class: "form-control" %>
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-4">
+            <h4>Content</h4>
+            <%= f.label :content %><br />
+            <%= f.rich_text_area :content, autofocus: true, placeholder: "content..." %>
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-4">
+            <h4>Thumbnail</h4>
+            <%= f.file_field :thumbnail %>
+          </div>
+
+          <%- thumbnail_url = f.object.thumbnail.url || '' %>
+          <%= image_tag thumbnail_url, class: 'w-100 mb-4 post_thumbnail_image' %>
+        </div>
+
+        <%= f.submit "Submit", class: "col-md-12 btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

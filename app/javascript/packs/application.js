@@ -11,6 +11,7 @@ require("trix")
 require("@rails/actiontext")
 require("jquery")
 require("bootstrap")
+require("./posts")
 
 import "./../stylesheets/application.scss"
 const images = require.context('../images', true)
