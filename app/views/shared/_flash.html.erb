@@ -1,0 +1,10 @@
+<% if notice && !devise_controller? %>
+  <div class="fixed-flash-message alert alert-success position-fixed p-3 ml-3 mt-3" role="alert">
+    <strong><%= notice %></strong>
+  </div>
+<% end %>
+<% if alert && !devise_controller? %>
+  <div class="fixed-flash-message alert alert-danger position-fixed p-3 ml-3 mt-3" role="alert">
+    <strong><%= alert %></strong>
+  </div>
+<% end %>

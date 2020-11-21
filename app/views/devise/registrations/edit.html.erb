@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <h2 class="text-center"> Change your password! </h2>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <%= f.label :current_password %><br />
+            <%= f.password_field :current_password, autofocus: true, placeholder: "Current password...", class: "form-control" %>
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autofocus: true, placeholder: "New password...", class: "form-control" %>
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autofocus: true, placeholder: "New password confirmation...", class: "form-control" %>
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <br>
+        <%= f.submit "Update", class: "col-md-12 btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
