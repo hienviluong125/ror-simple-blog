@@ -1,0 +1,54 @@
+env:
+  RUBY_VERSION: 2.6.x
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_DB: postgres
+  DATABASE_USERNAME: postgres
+  DATABASE_PASSWORD: postgres
+  DATABASE_PORT: 5432
+  DATABASE_HOST: localhost
+
+name: Run rspec & deploy to heroku
+on:
+  push:
+    branches:
+      - main
+jobs:
+  rspec-test:
+    name: RSpec
+    runs-on: ubuntu-18.04
+    services:
+      postgres:
+        image: postgres:11
+        ports:
+        - 5432:5432
+        env:
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+      - name: Install postgres client
+        run: sudo apt-get install libpq-dev
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundler install
+      - name: Create database
+        run: |
+          bundler exec rails db:create RAILS_ENV=test
+          bundler exec rails db:migrate RAILS_ENV=test
+      - name: Run tests
+        run: bundler exec rake
+  heroku-deployment:
+    needs: rspec-test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Deploy to Heroku
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_APP_REPO_ID: ${{ secrets.HEROKU_APP_REPO_ID }}
+      run: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_REPO_ID.git origin/main:main
