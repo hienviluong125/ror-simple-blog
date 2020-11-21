@@ -1,0 +1,31 @@
+<div class="p-5 container-fluid">
+  <%= link_to 'Create post', new_dashboard_post_path, class: 'btn btn-primary mb-4' %>
+  <h3>All posts</h3>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Author</th>
+        <th>Created at</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.id %></td>
+          <td><%= post.title %></td>
+          <td><%= post.content.body.to_s[0..50] %></td>
+          <td><%= post.user.email %></td>
+          <td><%= post.created_at %></td>
+          <td>
+            <%= link_to "Edit", edit_dashboard_post_path(post), class: 'btn btn-primary' %>
+            <%= link_to "Delete", dashboard_post_path(post), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure want to delete this ?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

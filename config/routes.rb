@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     root to: 'pages#index'
+    resources :posts
   end
 end
