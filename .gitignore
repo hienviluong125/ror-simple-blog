@@ -37,3 +37,6 @@ yarn-debug.log*
 
 # Ignore environment configuration
 .env
+
+# Ignore simple coverage folder
+coverage
