@@ -41,7 +41,7 @@ RSpec.describe Dashboard::PostsController, type: :controller do
 
     context 'create a new post' do
       before do
-        do_request({ post: post_attributes })
+        do_request({ post: post_attributes.merge(thumbnail: fixture_file_upload('sample.jpg', 'image/jpg')) })
       end
 
       it { expect(flash[:notice]).to eq 'Post created succesfully' }
@@ -79,7 +79,7 @@ RSpec.describe Dashboard::PostsController, type: :controller do
 
     context 'update a post' do
       before do
-        do_request({ post: post_attributes, id: existing_post.id })
+        do_request({ post: post_attributes.merge(thumbnail: fixture_file_upload('sample.jpg', 'image/jpg')), id: existing_post.id })
       end
 
       it { expect(flash[:notice]).to eq 'Post updated succesfully' }
@@ -88,7 +88,7 @@ RSpec.describe Dashboard::PostsController, type: :controller do
 
     context 'update a post with invalid params' do
       before do
-        do_request({ post: post_attributes.merge(title: ''), id: existing_post.id })
+        do_request({ post: post_attributes.merge(title: '', thumbnail: fixture_file_upload('sample.jpg', 'image/jpg')), id: existing_post.id })
       end
 
       it { expect(response).to render_template :edit }

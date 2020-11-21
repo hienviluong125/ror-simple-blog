@@ -1,0 +1,24 @@
+<%= render partial: "layouts/header", locals: { bg_image: asset_pack_url('media/images/home-bg.jpg') }%>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="d-flex justify-content-between">
+        <h3 class="mb-5">Manage your posts</h3>
+        <div>
+          <%= link_to "New post", new_post_path, class: 'btn btn-primary btn-sm' %>
+        </div>
+      </div>
+      <% if @posts.blank?  %>
+        <p>Empty data</p>
+      <% end %>
+
+      <%= render partial: "post", collection: @posts, as: :post %>
+
+      <div class="float-right">
+        <% if @posts.present?  %>
+          <%== pagy_bootstrap_nav(@pagy) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

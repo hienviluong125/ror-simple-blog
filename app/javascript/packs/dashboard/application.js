@@ -6,5 +6,6 @@ require("trix")
 require("@rails/actiontext")
 require("jquery")
 require("bootstrap")
+require("./posts")
 
 import '../../stylesheets/dashboard/application.scss'

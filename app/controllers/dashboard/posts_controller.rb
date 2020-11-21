@@ -5,7 +5,7 @@ module Dashboard
     def index
       authorize Post
 
-      @posts = Post.all
+      @pagy, @posts = pagy(Post.all, items: 10)
     end
 
     def new
@@ -43,7 +43,7 @@ module Dashboard
     private
 
     def post_params
-      params.require(:post).permit(:title, :content, :user_id)
+      params.require(:post).permit(:title, :content, :user_id, :thumbnail, :description)
     end
 
     def prepare_post
