@@ -15,4 +15,28 @@ RSpec.describe PagesController, type: :controller do
       it { expect(response).to render_template :index }
     end
   end
+
+  describe 'get #contact' do
+    def do_request
+      get :contact
+    end
+
+    context 'access to contact page' do
+      before { do_request }
+
+      it { expect(response).to render_template :contact }
+    end
+  end
+
+  describe 'get #about' do
+    def do_request
+      get :about
+    end
+
+    context 'access to about page' do
+      before { do_request }
+
+      it { expect(response).to render_template :about }
+    end
+  end
 end
