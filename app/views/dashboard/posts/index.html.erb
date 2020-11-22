@@ -17,7 +17,7 @@
         <tr>
           <td><%= post.id %></td>
           <td><%= post.title %></td>
-          <td><%= post.description %></td>
+          <td><%= post.description[0..20] %> ...</td>
           <td><%= post.user.email %></td>
           <td><%= post.created_at %></td>
           <td>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :dashboard do
     root to: 'pages#index'
     resources :posts
+    resources :users, only: :index
   end
 
   resources :posts

@@ -7,6 +7,7 @@ FactoryBot.define do
     association :user
 
     trait :with_remote_thumbnail do
+      thumbnail { nil }
       remote_thumbnail_url { Faker::Avatar.image }
     end
   end
