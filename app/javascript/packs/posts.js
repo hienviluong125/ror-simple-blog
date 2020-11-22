@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+  $(document).on('turbolinks:load', function() {
   $("#post_thumbnail").change(function() {
     readURL(this);
   });
@@ -16,10 +16,9 @@ $(document).on('turbolinks:load', function() {
           $('.post-list').append(res.html);
           $('.load-more').attr('href', res.next_page_url);
 
-          if(res.last_page) {
+          if(!res.next_page) {
             $('.load-more').attr('href', '');
             $('.load-more').removeClass('btn-primary').addClass('disabled btn-secondary')
-
           }
         }
 
