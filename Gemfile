@@ -33,6 +33,8 @@ gem 'pundit'
 gem 'faker'
 gem 'pagy'
 gem 'carrierwave'
+gem 'cloudinary'
+gem 'sendgrid-actionmailer'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
